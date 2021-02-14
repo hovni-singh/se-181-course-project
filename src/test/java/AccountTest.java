@@ -15,7 +15,7 @@ public class AccountTest {
     public void setUp() {
         checkingAccount = new Checking("checking", ID, APR);
         savingsAccount = new Savings("savings", ID, APR);
-        cdAccount = new CD("cd", ID, APR, 0);
+        cdAccount = new CD("cd", ID, APR, 100);
     }
 
     @Test
@@ -41,6 +41,18 @@ public class AccountTest {
     @Test
     public void cd_account_has_amount() {
         assertNotNull(cdAccount.getBalance());
+    }
+
+    @Test
+    public void cd_balance_initializes() {
+        assertEquals(100, cdAccount.getBalance());
+    }
+
+    @Test
+    public void withdrawal_cannot_go_below_zero() {
+        checkingAccount.deposit(200);
+        checkingAccount.withdraw(500);
+        assertEquals(0, checkingAccount.getBalance());
     }
 
 }

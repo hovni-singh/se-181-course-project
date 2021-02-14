@@ -38,6 +38,21 @@ public class BankTest {
         assertTrue(bank.getAccounts().get(ID).getType() == "Checking");
     }
 
+    @Test
+    public void add_two_checking_accounts() {
+        bank.addCheckingAccount("Checking", ID, APR);
+        bank.addCheckingAccount("Checking", 17829345, APR);
+        assertTrue(bank.accountExists(ID) && bank.accountExists(17829345));
+    }
+
+    @Test
+    public void add_two_different_accounts() {
+        bank.addCheckingAccount("Checking", ID, APR);
+        bank.addSavingsAccount("Savings", 39473234, APR);
+        assertTrue((bank.getAccounts().get(ID).getType() == "Checking") && (bank.getAccounts().get(39473234).getType() == "Savings"));
+        assertTrue(bank.accountExists(ID) && bank.accountExists(39473234));
+    }
+
 
     @Test
     public void deposit_into_account() {
@@ -83,6 +98,14 @@ public class BankTest {
     public void withdraw_from_cd_account() {
         bank.addCDAccount("CD", ID, APR, 700);
         bank.getAccounts().get(ID).withdraw(500);
+        assertEquals(200, bank.getAccounts().get(ID).getBalance());
+    }
+
+    @Test
+    public void deposit_and_withdraw_from_account() {
+        bank.addSavingsAccount("Savings", ID, APR);
+        bank.getAccounts().get(ID).deposit(400);
+        bank.getAccounts().get(ID).withdraw(200);
         assertEquals(200, bank.getAccounts().get(ID).getBalance());
     }
 
