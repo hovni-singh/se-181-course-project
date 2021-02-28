@@ -2,6 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
+
     private Map<Integer, Account> accounts;
 
     public Bank() {
@@ -14,6 +15,18 @@ public class Bank {
 
     public boolean accountExists(int id) {
         if (accounts.get(id) != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isAmountTooGreat(int id, int amount) {
+        if (accounts.get(id).getType().equalsIgnoreCase("Checking")) {
+            return getAccounts().get(id).amountIsTooGreat(amount);
+        } else if (accounts.get(id).getType().equalsIgnoreCase("Savings")) {
+            return getAccounts().get(id).amountIsTooGreat(amount);
+        } else if (accounts.get(id).getType().equalsIgnoreCase("cd")) {
             return true;
         } else {
             return false;

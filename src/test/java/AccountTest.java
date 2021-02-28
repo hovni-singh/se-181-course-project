@@ -18,6 +18,7 @@ public class AccountTest {
         cdAccount = new CD("cd", ID, APR, 100);
     }
 
+
     @Test
     public void balance_initially_zero() {
         assertEquals(0, checkingAccount.getBalance());

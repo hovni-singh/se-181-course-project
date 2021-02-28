@@ -9,6 +9,11 @@ public class CD extends Account {
     }
 
     @Override
+    boolean amountIsTooGreat(int amount) {
+        return false;
+    }
+
+    @Override
     public int getBalance() {
         return balance;
     }

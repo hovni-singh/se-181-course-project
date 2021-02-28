@@ -19,6 +19,15 @@ public class Checking extends Account {
     }
 
     @Override
+    public boolean amountIsTooGreat(int amount) {
+        if (amount > 1000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public int withdraw(int amount) {
         if ((balance - amount) > 0) {
             balance -= amount;
