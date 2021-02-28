@@ -66,6 +66,60 @@ public class MasterControlTest {
         assertSingleCommand("create checking 1234a678 0.05", actual);
     }
 
+    @Test
+    void invalid_to_create_accounts_with_character_in_apr() {
+        input.add("create checking 12345678 0.a5");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("create checking 12345678 0.a5", actual);
+    }
+
+    @Test
+    void invalid_to_create_cd_with_less_than_1000() {
+        input.add("create cd 12345678 0.05 100");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("create cd 12345678 0.05 100", actual);
+    }
+
+    @Test
+    void invalid_to_create_cd_with_more_than_10000() {
+        input.add("create cd 12345678 0.05 20000");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("create cd 12345678 0.05 20000", actual);
+    }
+
+    @Test
+    void invalid_to_deposit_into_cd() {
+        input.add("create cd 12345678 0.05 1000");
+        input.add("deposit 12345678 100");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("deposit 12345678 100", actual);
+    }
+
+    @Test
+    void invalid_to_deposit_more_than_2500_into_savings() {
+        input.add("create savings 12345678 0.05");
+        input.add("deposit 12345678 3000");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("deposit 12345678 3000", actual);
+    }
+
+    @Test
+    void invalid_to_deposit_more_than_1000_into_checking() {
+        input.add("create checking 12345678 0.05");
+        input.add("deposit 12345678 2000");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("deposit 12345678 2000", actual);
+    }
+
+    @Test
+    void invalid_to_deposit_zero_into_account() {
+        input.add("create checking 12345678 0.05");
+        input.add("deposit 12345678 0");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("deposit 12345678 0", actual);
+    }
+
+
     private void assertSingleCommand(String command, List<String> actual) {
         assertEquals(1, actual.size());
         assertEquals(command, actual.get(0));
