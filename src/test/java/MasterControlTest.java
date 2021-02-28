@@ -119,6 +119,14 @@ public class MasterControlTest {
         assertSingleCommand("deposit 12345678 0", actual);
     }
 
+    @Test
+    void valid_create_and_deposit_command() {
+        input.add("create checking 12345678 0.05");
+        input.add("deposit 12345678 600");
+        List<String> actual = masterControl.start(input);
+        assertEquals(0, actual.size());
+    }
+
 
     private void assertSingleCommand(String command, List<String> actual) {
         assertEquals(1, actual.size());
