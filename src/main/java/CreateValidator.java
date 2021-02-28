@@ -29,7 +29,7 @@ public class CreateValidator extends CommandValidator {
             return false;
         }
         if (commandSplit.length == 4) {
-            if ((accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr))) {
+            if ((accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (!type.equalsIgnoreCase("cd"))) {
                 check = true;
             } else {
                 check = false;
@@ -46,6 +46,9 @@ public class CreateValidator extends CommandValidator {
 
     private boolean cdAmountIsValid(String command) {
         String[] commandSplit = splitString(command);
+        if (commandSplit[4].isEmpty()) {
+            return false;
+        }
         amount = Integer.parseInt(commandSplit[4]);
         if (amount >= 1000 && amount <= 10000) {
             return true;
