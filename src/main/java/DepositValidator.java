@@ -1,4 +1,4 @@
-public class DepositValidator {
+public class DepositValidator extends CommandValidator {
     Bank bank;
     private int id;
     private int amount;
@@ -7,19 +7,32 @@ public class DepositValidator {
         this.bank = bank;
     }
 
-    public static boolean IsDigits(String s) {
-        boolean numeric = true;
-        try {
-            Double num = Double.parseDouble(s);
-        } catch (NumberFormatException nfe) {
-            numeric = false;
+    public boolean depositValidate(String command) {
+        String[] commandSplit = splitString(command);
+        if ((commandSplit.length != 3)) {
+            return false;
         }
-        return numeric;
+        if (!(depositIsValid(commandSplit))) {
+            return false;
+        }
+        if ((IsDigits(commandSplit[1]) == false)) {
+            return false;
+        }
+        if ((IsDigits(commandSplit[2]) == false)) {
+            return false;
+        }
+        getVariables(commandSplit);
+        if ((bank.isAmountTooGreat(id, amount)) || amount <= 0) {
+            return false;
+        }
+        if (idIsValid(id)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean depositIsValid(String command) {
-        String[] commandSplit = splitString(command);
-        getVariables(commandSplit);
+    private boolean depositIsValid(String[] commandSplit) {
         if ((commandSplit[0].equalsIgnoreCase(("deposit"))) && ((commandSplit.length == 3))) {
             return true;
         } else {
@@ -27,49 +40,6 @@ public class DepositValidator {
         }
     }
 
-    public boolean depositId(String command) {
-        String[] commandSplit = splitString(command);
-        getVariables(commandSplit);
-        if (commandSplit[1].isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public boolean depositAmount(String command) {
-        String[] commandSplit = splitString(command);
-        getVariables(commandSplit);
-        if (commandSplit[2].isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public boolean amountIsValid(String command) {
-        String[] commandSplit = splitString(command);
-        if (IsDigits(commandSplit[2]) == false) {
-            return false;
-        }
-        getVariables(commandSplit);
-        if (amount <= 0) {
-            return false;
-        } else if ((bank.getAccounts().get(id).getType().equalsIgnoreCase("Checking")) && amount > 1000) {
-            return false;
-        } else if ((bank.getAccounts().get(id).getType().equalsIgnoreCase("savings")) && amount > 2500) {
-            return false;
-        } else if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    private String[] splitString(String command) {
-        String commandSplit[] = command.split(" ");
-        return commandSplit;
-    }
 
     private void getVariables(String[] commandSplit) {
         id = Integer.parseInt(commandSplit[1]);
