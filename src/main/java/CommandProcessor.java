@@ -46,7 +46,7 @@ public class CommandProcessor {
     }
 
     private void getDepositVariables(String[] commandSplit) {
-        id = Integer.parseInt(commandSplit[2]);
+        id = Integer.parseInt(commandSplit[1]);
         amount = Integer.parseInt(commandSplit[2]);
     }
 }
