@@ -10,6 +10,10 @@ public class CommandValidator {
         return numeric;
     }
 
+    public boolean validate(String command) {
+        return true;
+    }
+
     public boolean accountTypeIsValid(String type) {
         if (type.isEmpty()) {
             return false;
