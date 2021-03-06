@@ -1,5 +1,3 @@
-package banking;
-
 public class CommandValidator {
 
     public static boolean IsDigits(String s) {

@@ -1,5 +1,3 @@
-package banking;
-
 public class CreateValidator extends CommandValidator {
     Bank bank;
     String type;

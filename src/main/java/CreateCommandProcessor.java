@@ -1,5 +1,3 @@
-package banking;
-
 public class CreateCommandProcessor extends CommandProcessor {
 
     String type;

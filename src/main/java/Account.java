@@ -1,5 +1,3 @@
-package banking;
-
 abstract class Account {
     private final String type;
     private final int id;
