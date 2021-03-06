@@ -24,9 +24,9 @@ public class Bank {
     }
 
     public boolean isAmountTooGreat(int id, int amount) {
-        if (accounts.get(id).getType().equalsIgnoreCase("banking.Checking")) {
+        if (accounts.get(id).getType().equalsIgnoreCase("Checking")) {
             return getAccounts().get(id).amountIsTooGreat(amount);
-        } else if (accounts.get(id).getType().equalsIgnoreCase("banking.Savings")) {
+        } else if (accounts.get(id).getType().equalsIgnoreCase("Savings")) {
             return getAccounts().get(id).amountIsTooGreat(amount);
         } else if (accounts.get(id).getType().equalsIgnoreCase("cd")) {
             return true;
