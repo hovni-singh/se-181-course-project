@@ -1,3 +1,5 @@
+package banking;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,9 +24,9 @@ public class Bank {
     }
 
     public boolean isAmountTooGreat(int id, int amount) {
-        if (accounts.get(id).getType().equalsIgnoreCase("Checking")) {
+        if (accounts.get(id).getType().equalsIgnoreCase("banking.Checking")) {
             return getAccounts().get(id).amountIsTooGreat(amount);
-        } else if (accounts.get(id).getType().equalsIgnoreCase("Savings")) {
+        } else if (accounts.get(id).getType().equalsIgnoreCase("banking.Savings")) {
             return getAccounts().get(id).amountIsTooGreat(amount);
         } else if (accounts.get(id).getType().equalsIgnoreCase("cd")) {
             return true;
