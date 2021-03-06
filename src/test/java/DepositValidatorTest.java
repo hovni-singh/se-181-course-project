@@ -1,5 +1,3 @@
-package banking;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,8 +13,8 @@ public class DepositValidatorTest {
     public void setUp() {
         bank = new Bank();
         depositValidator = new DepositValidator(bank);
-        bank.addCheckingAccount("banking.Checking", 13748594, 0.02);
-        bank.addSavingsAccount("banking.Savings", 23746537, 0.02);
+        bank.addCheckingAccount("Checking", 13748594, 0.02);
+        bank.addSavingsAccount("Savings", 23746537, 0.02);
     }
 
     @Test

@@ -1,12 +1,10 @@
-package banking;
-
-public class Checking extends Account {
+public class Savings extends Account {
     private String type;
     private int balance = 0;
 
-    public Checking(String type, int id, double apr) {
+    public Savings(String type, int id, double apr) {
         super(type, id, apr);
-        this.type = "banking.Checking";
+        this.type = "Savings";
     }
 
     @Override
@@ -22,7 +20,7 @@ public class Checking extends Account {
 
     @Override
     public boolean amountIsTooGreat(int amount) {
-        if (amount > 1000) {
+        if (amount > 2500) {
             return true;
         } else {
             return false;
@@ -38,4 +36,5 @@ public class Checking extends Account {
         }
         return balance;
     }
+
 }

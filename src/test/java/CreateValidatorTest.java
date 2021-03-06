@@ -1,5 +1,3 @@
-package banking;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +60,7 @@ public class CreateValidatorTest {
 
     @Test
     public void duplicate_id_is_invalid() {
-        bank.addCheckingAccount("banking.Checking", 67345637, 0.02);
+        bank.addCheckingAccount("Checking", 67345637, 0.02);
         boolean actual = createValidator.createValidate("create checking 67345637 0.02");
         assertFalse(actual);
     }
