@@ -4,9 +4,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class DepositValidatorTest extends CommandValidator {
+public class DepositValidatorTest {
     DepositValidator depositValidator;
     Bank bank;
+
 
     @BeforeEach
     public void setUp() {
