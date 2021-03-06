@@ -1,10 +1,12 @@
+package banking;
+
 public class CD extends Account {
     private String type;
     private int balance;
 
     public CD(String type, int id, double apr, int balance) {
         super(type, id, apr);
-        this.type = "CD";
+        this.type = "banking.CD";
         this.balance = balance;
     }
 
