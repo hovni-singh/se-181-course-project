@@ -11,7 +11,12 @@ public class CD extends Account {
     }
 
     @Override
-    boolean amountIsTooGreat(int amount) {
+    boolean depositAmountIsTooGreat(int amount) {
+        return false;
+    }
+
+    @Override
+    boolean withdrawAmountIsTooGreat(int amount) {
         return false;
     }
 

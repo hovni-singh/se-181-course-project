@@ -23,11 +23,23 @@ public class Bank {
         }
     }
 
-    public boolean isAmountTooGreat(int id, int amount) {
+    public boolean depositAmountTooGreat(int id, int amount) {
         if (accounts.get(id).getType().equalsIgnoreCase("Checking")) {
-            return getAccounts().get(id).amountIsTooGreat(amount);
+            return getAccounts().get(id).depositAmountIsTooGreat(amount);
         } else if (accounts.get(id).getType().equalsIgnoreCase("Savings")) {
-            return getAccounts().get(id).amountIsTooGreat(amount);
+            return getAccounts().get(id).depositAmountIsTooGreat(amount);
+        } else if (accounts.get(id).getType().equalsIgnoreCase("cd")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean withdrawAmountTooGreat(int id, int amount) {
+        if (accounts.get(id).getType().equalsIgnoreCase("Checking")) {
+            return getAccounts().get(id).withdrawAmountIsTooGreat(amount);
+        } else if (accounts.get(id).getType().equalsIgnoreCase("Savings")) {
+            return getAccounts().get(id).withdrawAmountIsTooGreat(amount);
         } else if (accounts.get(id).getType().equalsIgnoreCase("cd")) {
             return true;
         } else {

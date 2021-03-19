@@ -21,8 +21,17 @@ public class Checking extends Account {
     }
 
     @Override
-    public boolean amountIsTooGreat(int amount) {
+    public boolean depositAmountIsTooGreat(int amount) {
         if (amount > 1000) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean withdrawAmountIsTooGreat(int amount) {
+        if (amount > 400) {
             return true;
         } else {
             return false;

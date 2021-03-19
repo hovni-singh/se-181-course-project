@@ -24,7 +24,7 @@ public class DepositValidator extends CommandValidator {
             return false;
         }
         getVariables(commandSplit);
-        if ((bank.isAmountTooGreat(id, amount)) || amount <= 0) {
+        if ((bank.depositAmountTooGreat(id, amount)) || amount <= 0) {
             return false;
         }
         if (idIsValid(id)) {

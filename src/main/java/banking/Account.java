@@ -23,7 +23,9 @@ abstract class Account {
         return apr;
     }
 
-    abstract boolean amountIsTooGreat(int amount);
+    abstract boolean depositAmountIsTooGreat(int amount);
+
+    abstract boolean withdrawAmountIsTooGreat(int amount);
 
     abstract public int getBalance();
 
