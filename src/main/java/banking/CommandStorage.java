@@ -17,4 +17,5 @@ public class CommandStorage {
     public List<String> getInvalidCommands() {
         return invalidCommands;
     }
+
 }
