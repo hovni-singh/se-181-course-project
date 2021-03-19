@@ -1,12 +1,12 @@
 package banking;
 
 public class WithdrawValidator extends CommandValidator {
-    Bank bank;
+
     private int id;
     private int amount;
 
     public WithdrawValidator(Bank bank) {
-        this.bank = bank;
+        super(bank);
     }
 
     public boolean withdrawValidate(String command) {

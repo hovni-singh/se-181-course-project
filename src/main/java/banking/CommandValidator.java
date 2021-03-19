@@ -1,6 +1,16 @@
 package banking;
 
 public class CommandValidator {
+    Bank bank;
+    CreateValidator createValidator;
+    DepositValidator depositValidator;
+    WithdrawValidator withdrawValidator;
+    TransferValidator transferValidator;
+    PassTimeValidator passTimeValidator;
+
+    public CommandValidator(Bank bank) {
+        this.bank = bank;
+    }
 
     public static boolean IsDigits(String s) {
         boolean numeric = true;
@@ -12,6 +22,30 @@ public class CommandValidator {
         return numeric;
     }
 
+    public boolean validate(String command) {
+        createValidator = new CreateValidator(bank);
+        depositValidator = new DepositValidator(bank);
+        withdrawValidator = new WithdrawValidator(bank);
+        transferValidator = new TransferValidator(bank);
+        passTimeValidator = new PassTimeValidator(bank);
+        String[] commandSplit = splitString(command);
+        if (commandSplit[0].equalsIgnoreCase("create")) {
+            return createValidator.createValidate(command);
+        }
+        if (commandSplit[0].equalsIgnoreCase("deposit")) {
+            return depositValidator.depositValidate(command);
+        }
+        if (commandSplit[0].equalsIgnoreCase("withdraw")) {
+            return withdrawValidator.withdrawValidate(command);
+        }
+        if (commandSplit[0].equalsIgnoreCase("transfer")) {
+            return transferValidator.transferValidate(command);
+        }
+        if (commandSplit[0].equalsIgnoreCase("pass")) {
+            return passTimeValidator.passValidate(command);
+        }
+        return false;
+    }
 
     public boolean accountTypeIsValid(String type) {
         if (type.isEmpty()) {

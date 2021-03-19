@@ -1,11 +1,10 @@
 package banking;
 
 public class PassTimeValidator extends CommandValidator {
-    Bank bank;
     int month;
 
     public PassTimeValidator(Bank bank) {
-        this.bank = bank;
+        super(bank);
     }
 
     public boolean passValidate(String command) {

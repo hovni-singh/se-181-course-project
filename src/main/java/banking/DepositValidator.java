@@ -1,26 +1,16 @@
 package banking;
 
 public class DepositValidator extends CommandValidator {
-    Bank bank;
     private int id;
     private double amount;
 
     public DepositValidator(Bank bank) {
-        this.bank = bank;
+        super(bank);
     }
 
     public boolean depositValidate(String command) {
         String[] commandSplit = splitString(command);
-        if ((commandSplit.length != 3)) {
-            return false;
-        }
-        if (!(depositIsValid(commandSplit))) {
-            return false;
-        }
-        if ((IsDigits(commandSplit[1]) == false)) {
-            return false;
-        }
-        if ((IsDigits(commandSplit[2]) == false)) {
+        if (((commandSplit.length != 3)) || (!(depositIsValid(commandSplit))) || (IsDigits(commandSplit[1]) == false) || (IsDigits(commandSplit[2]) == false)) {
             return false;
         }
         getVariables(commandSplit);

@@ -1,28 +1,18 @@
 package banking;
 
 public class CreateValidator extends CommandValidator {
-    Bank bank;
     String type;
     int id;
     double apr;
     int amount;
 
     public CreateValidator(Bank bank) {
-        this.bank = bank;
+        super(bank);
     }
 
     public boolean createValidate(String command) {
         String[] commandSplit = splitString(command);
-        if ((commandSplit.length < 4) || (commandSplit.length > 5)) {
-            return false;
-        }
-        if (!(createIsValid(commandSplit))) {
-            return false;
-        }
-        if ((IsDigits(commandSplit[2]) == false)) {
-            return false;
-        }
-        if ((IsDigits(commandSplit[3]) == false)) {
+        if (((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (IsDigits(commandSplit[2]) == false) || (IsDigits(commandSplit[3]) == false)) {
             return false;
         }
         getVariables(commandSplit);

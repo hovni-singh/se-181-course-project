@@ -6,15 +6,21 @@ public class MasterControl {
     Bank bank;
     CreateValidator createValidator;
     DepositValidator depositValidator;
+    WithdrawValidator withdrawValidator;
+    TransferValidator transferValidator;
+    PassTimeValidator passTimeValidator;
     CommandProcessor commandProcessor;
     CommandStorage commandStorage;
 
-    public MasterControl(Bank bank, CreateValidator createValidator, DepositValidator depositValidator, CommandProcessor commandProcessor, CommandStorage commandStorage) {
+    public MasterControl(Bank bank, CreateValidator createValidator, DepositValidator depositValidator, WithdrawValidator withdrawValidator, TransferValidator transferValidator, PassTimeValidator passTimeValidator, CommandProcessor commandProcessor, CommandStorage commandStorage) {
         this.bank = bank;
         this.createValidator = createValidator;
         this.depositValidator = depositValidator;
         this.commandProcessor = commandProcessor;
         this.commandStorage = commandStorage;
+        this.withdrawValidator = withdrawValidator;
+        this.transferValidator = transferValidator;
+        this.passTimeValidator = passTimeValidator;
     }
 
     public List<String> start(List<String> input) {

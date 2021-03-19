@@ -1,12 +1,11 @@
 package banking;
 
 public class TransferValidator extends CommandValidator {
-    Bank bank;
     DepositValidator depositValidator;
     WithdrawValidator withdrawValidator;
 
     public TransferValidator(Bank bank) {
-        this.bank = bank;
+        super(bank);
     }
 
     public boolean transferValidate(String command) {
