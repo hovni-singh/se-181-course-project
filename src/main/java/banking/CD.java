@@ -2,16 +2,16 @@ package banking;
 
 public class CD extends Account {
     private String type;
-    private int balance;
+    private double balance;
 
     public CD(String type, int id, double apr, int balance) {
         super(type, id, apr);
-        this.type = "banking.CD";
+        this.type = "CD";
         this.balance = balance;
     }
 
     @Override
-    boolean depositAmountIsTooGreat(int amount) {
+    boolean depositAmountIsTooGreat(double amount) {
         return false;
     }
 
@@ -21,21 +21,19 @@ public class CD extends Account {
     }
 
     @Override
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
     @Override
-    public int deposit(int amount) {
+    public double deposit(double amount) {
         balance += amount;
         return balance;
     }
 
     @Override
-    public int withdraw(int amount) {
-        if ((balance - amount) > 0) {
-            balance -= amount;
-        } else {
+    public double withdraw(int amount) {
+        if (super.getTime() >= 12) {
             balance = 0;
         }
         return balance;

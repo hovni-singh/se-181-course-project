@@ -96,12 +96,6 @@ public class BankTest {
         assertEquals(1400, bank.getAccounts().get(ID).getBalance());
     }
 
-    @Test
-    public void withdraw_from_cd_account() {
-        bank.addCDAccount("banking.CD", ID, APR, 700);
-        bank.getAccounts().get(ID).withdraw(500);
-        assertEquals(200, bank.getAccounts().get(ID).getBalance());
-    }
 
     @Test
     public void deposit_and_withdraw_from_account() {

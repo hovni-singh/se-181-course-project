@@ -3,7 +3,7 @@ package banking;
 public class DepositValidator extends CommandValidator {
     Bank bank;
     private int id;
-    private int amount;
+    private double amount;
 
     public DepositValidator(Bank bank) {
         this.bank = bank;
@@ -24,7 +24,7 @@ public class DepositValidator extends CommandValidator {
             return false;
         }
         getVariables(commandSplit);
-        if ((bank.depositAmountTooGreat(id, amount)) || amount <= 0) {
+        if ((bank.depositAmountTooGreat(id, amount)) || amount <= 0 || bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
             return false;
         }
         if (idIsValid(id)) {
@@ -45,7 +45,7 @@ public class DepositValidator extends CommandValidator {
 
     private void getVariables(String[] commandSplit) {
         id = Integer.parseInt(commandSplit[1]);
-        amount = Integer.parseInt(commandSplit[2]);
+        amount = Double.parseDouble(commandSplit[2]);
     }
 
 }

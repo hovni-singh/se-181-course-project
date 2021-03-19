@@ -2,32 +2,33 @@ package banking;
 
 public class Savings extends Account {
     private String type;
-    private int balance = 0;
+    private double balance = 0;
 
     public Savings(String type, int id, double apr) {
         super(type, id, apr);
-        this.type = "banking.Savings";
+        this.type = "Savings";
     }
 
     @Override
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
     @Override
-    public int deposit(int amount) {
+    public double deposit(double amount) {
         balance += amount;
         return balance;
     }
 
     @Override
-    public boolean depositAmountIsTooGreat(int amount) {
+    public boolean depositAmountIsTooGreat(double amount) {
         if (amount > 2500) {
             return true;
         } else {
             return false;
         }
     }
+
 
     @Override
     public boolean withdrawAmountIsTooGreat(int amount) {
@@ -39,7 +40,7 @@ public class Savings extends Account {
     }
 
     @Override
-    public int withdraw(int amount) {
+    public double withdraw(int amount) {
         if ((balance - amount) > 0) {
             balance -= amount;
         } else {

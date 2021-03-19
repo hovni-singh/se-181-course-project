@@ -15,7 +15,7 @@ public class WithdrawCommandProcessorTest {
         commandProcessor = new CommandProcessor(bank);
         bank.addCheckingAccount("Checking", 13748594, 0.02);
         bank.addSavingsAccount("Savings", 23746537, 0.02);
-        bank.addCDAccount("CD", 27382367, 0.04, 300);
+        bank.addCDAccount("CD", 87634562, 0.04, 600);
     }
 
 
@@ -72,6 +72,20 @@ public class WithdrawCommandProcessorTest {
         assertEquals(500, bank.getAccounts().get(23746537).getBalance());
         assertEquals(300, bank.getAccounts().get(13748594).getBalance());
 
+    }
+
+    @Test
+    public void withdraw_from_cd_account() {
+        bank.getAccounts().get(87634562).increaseMonth(12);
+        commandProcessor.processCommand("withdraw 87634562 600");
+        assertEquals(0, bank.getAccounts().get(87634562).getBalance());
+    }
+
+    @Test
+    public void withdraw_greater_amount_than_in_balance_from_cd_account() {
+        bank.getAccounts().get(87634562).increaseMonth(12);
+        commandProcessor.processCommand("withdraw 87634562 800");
+        assertEquals(0, bank.getAccounts().get(87634562).getBalance());
     }
 
 }
