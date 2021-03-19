@@ -82,7 +82,7 @@ public class TransferValidatorTest {
 
     @Test
     public void checking_withdraw_amount_invalid() {
-        boolean actual = transferValidator.transferValidate("transfer 13748594 23746537 2000");
+        boolean actual = transferValidator.transferValidate("transfer 13748594 23746537 500");
         assertFalse(actual);
     }
 
