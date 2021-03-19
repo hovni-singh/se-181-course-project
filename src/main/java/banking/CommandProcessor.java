@@ -5,6 +5,7 @@ public class CommandProcessor {
     CreateCommandProcessor createCommandProcessor;
     DepositCommandProcessor depositCommandProcessor;
     WithdrawCommandProcessor withdrawCommandProcessor;
+    TransferCommandProcessor transferCommandProcessor;
 
     public CommandProcessor(Bank bank) {
         this.bank = bank;
@@ -14,6 +15,7 @@ public class CommandProcessor {
         createCommandProcessor = new CreateCommandProcessor(bank);
         depositCommandProcessor = new DepositCommandProcessor(bank);
         withdrawCommandProcessor = new WithdrawCommandProcessor(bank);
+        transferCommandProcessor = new TransferCommandProcessor(bank);
         String[] commandSplit = splitString(command);
         if (commandSplit[0].equalsIgnoreCase("create")) {
             createCommandProcessor.createProcess(commandSplit);
@@ -23,6 +25,9 @@ public class CommandProcessor {
         }
         if (commandSplit[0].equalsIgnoreCase("withdraw")) {
             withdrawCommandProcessor.withdrawProcess(commandSplit);
+        }
+        if (commandSplit[0].equalsIgnoreCase("transfer")) {
+            transferCommandProcessor.transferProcess(commandSplit);
         }
     }
 
