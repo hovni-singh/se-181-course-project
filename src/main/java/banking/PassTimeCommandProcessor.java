@@ -16,32 +16,34 @@ public class PassTimeCommandProcessor extends CommandProcessor {
         month = Integer.parseInt(commandSplit[1]);
         List<Integer> closeAccounts = new ArrayList<>();
         int iteration = 0;
-        while (iteration < month) {
-            bank.getAccounts().forEach((key, account) -> {
-                account.increaseMonth(1);
-                if (account.getBalance() <= 0) {
-                    closeAccounts.add(account.getId());
-                }
-                if (account.getBalance() < 100) {
-                    account.withdraw(25);
-                }
-                double apr = account.getAPR() / 100;
-                double rate = apr / 12;
-                double balance = account.getBalance();
-                if (account.getType().equalsIgnoreCase("cd")) {
-                    for (int i = 0; i < 4; i++) {
-                        sum += balance * rate;
-                        balance += sum;
+        if (!bank.getAccounts().isEmpty()) {
+            while (iteration < month) {
+                bank.getAccounts().forEach((key, account) -> {
+                    account.increaseMonth(1);
+                    if (account.getBalance() <= 0) {
+                        closeAccounts.add(account.getId());
                     }
-                } else {
-                    sum = balance * rate;
-                }
-                account.deposit(sum);
-            });
-            iteration++;
-        }
-        for (int i = 0; i < closeAccounts.size(); i++) {
-            bank.close(closeAccounts.get(i));
+                    if (account.getBalance() < 100) {
+                        account.withdraw(25);
+                    }
+                    double apr = account.getAPR() / 100;
+                    double rate = apr / 12;
+                    double balance = account.getBalance();
+                    if (account.getType().equalsIgnoreCase("cd")) {
+                        for (int i = 0; i < 4; i++) {
+                            sum += balance * rate;
+                            balance += sum;
+                        }
+                    } else {
+                        sum = balance * rate;
+                    }
+                    account.deposit(sum);
+                });
+                iteration++;
+            }
+            for (int i = 0; i < closeAccounts.size(); i++) {
+                bank.close(closeAccounts.get(i));
+            }
         }
     }
 }

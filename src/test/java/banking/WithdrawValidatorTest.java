@@ -107,6 +107,17 @@ public class WithdrawValidatorTest {
     }
 
     @Test
+    public void withdraw_from_savings_before_one_month_invalid() {
+        boolean actual = commandValidator.validate("withdraw 20987654 400");
+        assertFalse(actual);
+    }
+
+    @Test
+    public void withdraw_from_savings_once_in_one_month() {
+
+    }
+
+    @Test
     public void withdrawing_from_cd_with_amount_more_than_balance() {
         bank.getAccounts().get(20987654).increaseMonth(12);
         boolean actual = commandValidator.validate("withdraw 20987654 500");

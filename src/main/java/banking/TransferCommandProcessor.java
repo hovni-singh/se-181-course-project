@@ -13,7 +13,7 @@ public class TransferCommandProcessor extends CommandProcessor {
         getTransferVariables(commandSplit);
         bank.getAccounts().get(fromId).withdraw(Integer.parseInt(commandSplit[3]));
         bank.getAccounts().get(toId).deposit(amount);
-        String request = "Transfer " + commandSplit[1] + " " + commandSplit[2] + " " + commandSplit[3];
+        String request = commandSplit[0] + " " + commandSplit[1] + " " + commandSplit[2] + " " + commandSplit[3];
         bank.getAccounts().get(fromId).addTransactionHistory(request);
         bank.getAccounts().get(toId).addTransactionHistory(request);
     }

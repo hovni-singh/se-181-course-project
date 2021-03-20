@@ -15,10 +15,7 @@ public class WithdrawValidator extends CommandValidator {
             return false;
         }
         getVariables(commandSplit);
-        if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd") && ((bank.getAccounts().get(id).getTime() < 12) || (amount < bank.getAccounts().get(id).getBalance()))) {
-            return false;
-        }
-        if (bank.withdrawAmountTooGreat(id, amount) || amount <= 0 || !bank.accountExists(id)) {
+        if (amount <= 0 || !bank.accountExists(id) || (cdCheck()) || bank.withdrawAmountTooGreat(id, amount)) {
             return false;
         }
         if (idIsValid(id)) {
@@ -26,6 +23,16 @@ public class WithdrawValidator extends CommandValidator {
         } else {
             return false;
         }
+    }
+
+
+    private boolean cdCheck() {
+        if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
+            if ((bank.getAccounts().get(id).getTime() < 12) || (amount < bank.getAccounts().get(id).getBalance())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean withdrawIsValid(String[] commandSplit) {
