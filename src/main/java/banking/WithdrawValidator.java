@@ -15,6 +15,9 @@ public class WithdrawValidator extends CommandValidator {
             return false;
         }
         getVariables(commandSplit);
+        if ((bank.getAccounts().get(id).getType().equalsIgnoreCase("savings")) && (!checkMonth())) {
+            return false;
+        }
         if (amount <= 0 || !bank.accountExists(id) || (cdCheck()) || bank.withdrawAmountTooGreat(id, amount)) {
             return false;
         }
@@ -25,6 +28,12 @@ public class WithdrawValidator extends CommandValidator {
         }
     }
 
+    private boolean checkMonth() {
+        if (bank.getAccounts().get(id).getMonthPassed()) {
+            return true;
+        }
+        return false;
+    }
 
     private boolean cdCheck() {
         if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {

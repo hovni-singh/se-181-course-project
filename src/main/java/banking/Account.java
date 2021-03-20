@@ -8,6 +8,7 @@ abstract class Account {
     private final int id;
     private final double apr;
     public List<String> transactionHistory;
+    protected boolean hasMonthPassed = false;
     private int time;
 
     public Account(String type, int id, double apr) {
@@ -36,8 +37,13 @@ abstract class Account {
         return apr;
     }
 
+    public boolean getMonthPassed() {
+        return hasMonthPassed;
+    }
+
     public void increaseMonth(int month) {
         time += month;
+        hasMonthPassed = true;
     }
 
     public int getTime() {

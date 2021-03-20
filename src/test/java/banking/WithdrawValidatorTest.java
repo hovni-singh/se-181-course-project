@@ -21,13 +21,13 @@ public class WithdrawValidatorTest {
 
     @Test
     public void withdraw_command_is_valid() {
-        boolean actual = commandValidator.validate("withdraw 23746537 600");
+        boolean actual = commandValidator.validate("withdraw 13748594 300");
         assertTrue(actual);
     }
 
     @Test
     public void typo_in_withdraw() {
-        boolean actual = commandValidator.validate("withdeaw 23746537 600");
+        boolean actual = commandValidator.validate("withdeaw 13748594 600");
         assertFalse(actual);
     }
 
@@ -40,43 +40,43 @@ public class WithdrawValidatorTest {
 
     @Test
     public void amount_in_command() {
-        boolean actual = commandValidator.validate("withdraw 23746537 700");
+        boolean actual = commandValidator.validate("withdraw 13748594 300");
         assertTrue(actual);
     }
 
     @Test
     public void amount_is_positive_integer() {
-        boolean actual = commandValidator.validate("withdraw 23746537 300");
+        boolean actual = commandValidator.validate("withdraw 13748594 300");
         assertTrue(actual);
     }
 
     @Test
     public void negative_amount_is_invalid() {
-        boolean actual = commandValidator.validate("withdraw 23746537 -300");
+        boolean actual = commandValidator.validate("withdraw 13748594 -300");
         assertFalse(actual);
     }
 
     @Test
     public void character_in_amount_is_invalid() {
-        boolean actual = commandValidator.validate("withdraw 23746537 3a0");
+        boolean actual = commandValidator.validate("withdraw 13748594 3a0");
         assertFalse(actual);
     }
 
     @Test
     public void zero_amount_is_invalid() {
-        boolean actual = commandValidator.validate("withdraw 23746537 0");
+        boolean actual = commandValidator.validate("withdraw 13748594 0");
         assertFalse(actual);
     }
 
     @Test
     public void savings_amount_is_valid() {
-        boolean actual = commandValidator.validate("withdraw 23746537 300");
+        boolean actual = commandValidator.validate("withdraw 13748594 300");
         assertTrue(actual);
     }
 
     @Test
     public void amount_for_savings_is_above_maximum() {
-        boolean actual = commandValidator.validate("withdraw 23746537 2000");
+        boolean actual = commandValidator.validate("withdraw 13748594 2000");
         assertFalse(actual);
     }
 
@@ -108,14 +108,17 @@ public class WithdrawValidatorTest {
 
     @Test
     public void withdraw_from_savings_before_one_month_invalid() {
-        boolean actual = commandValidator.validate("withdraw 20987654 400");
+        boolean actual = commandValidator.validate("withdraw 23746537 400");
         assertFalse(actual);
     }
 
     @Test
     public void withdraw_from_savings_once_in_one_month() {
-
+        bank.getAccounts().get(23746537).increaseMonth(1);
+        boolean actual = commandValidator.validate("withdraw 23746537 400");
+        assertTrue(actual);
     }
+
 
     @Test
     public void withdrawing_from_cd_with_amount_more_than_balance() {

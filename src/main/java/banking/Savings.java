@@ -46,6 +46,7 @@ public class Savings extends Account {
         } else {
             balance = 0;
         }
+        hasMonthPassed = false;
         return balance;
     }
 
