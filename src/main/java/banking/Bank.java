@@ -1,14 +1,15 @@
 package banking;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 public class Bank {
 
     private Map<Integer, Account> accounts;
 
     public Bank() {
-        accounts = new HashMap<>();
+        accounts = new LinkedHashMap<>();
     }
 
     public Map<Integer, Account> getAccounts() {
@@ -54,5 +55,6 @@ public class Bank {
     public void addCDAccount(String type, int id, double apr, int balance) {
         accounts.put(id, new CD(type, id, apr, balance));
     }
+
 
 }

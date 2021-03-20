@@ -1,6 +1,9 @@
 package banking;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+
 
 public class MasterControl {
     Bank bank;
@@ -16,6 +19,7 @@ public class MasterControl {
     }
 
     public List<String> start(List<String> input) {
+        List<String> outputList = new ArrayList<>();
         for (String command : input) {
             if (commandValidator.validate(command)) {
                 commandProcessor.processCommand(command);
@@ -23,15 +27,16 @@ public class MasterControl {
                 commandStorage.addInvalidCommand(command);
             }
         }
-        bank.getAccounts().forEach((key, account) -> {
-            System.out.println(account.stateOfAccount());
-            for (int i = 0; i < account.getTransactionHistory().size(); i++) {
-                System.out.println(account.getTransactionHistory().get(i));
+        Set<Integer> keys = bank.getAccounts().keySet();
+        for (Integer k : keys) {
+            outputList.add(bank.getAccounts().get(k).stateOfAccount());
+            for (int i = 0; i < bank.getAccounts().get(k).getTransactionHistory().size(); i++) {
+                outputList.add(bank.getAccounts().get(k).getTransactionHistory().get(i));
             }
-        });
-        for (int i = 0; i < commandStorage.getInvalidCommands().size(); i++) {
-            System.out.println(commandStorage.getInvalidCommands().get(i));
         }
-        return commandStorage.getInvalidCommands();
+        for (int i = 0; i < commandStorage.getInvalidCommands().size(); i++) {
+            outputList.add(commandStorage.getInvalidCommands().get(i));
+        }
+        return outputList;
     }
 }
