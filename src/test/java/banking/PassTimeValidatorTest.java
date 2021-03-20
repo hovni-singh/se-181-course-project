@@ -32,6 +32,13 @@ public class PassTimeValidatorTest {
     }
 
     @Test
+    public void no_month_parameter_invalid() {
+        boolean actual = commandValidator.validate("pass");
+        assertFalse(actual);
+    }
+
+
+    @Test
     public void month_is_positive_integer() {
         boolean actual = commandValidator.validate("Pass 20");
         assertTrue(actual);

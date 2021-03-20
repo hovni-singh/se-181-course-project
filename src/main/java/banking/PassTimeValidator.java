@@ -9,7 +9,7 @@ public class PassTimeValidator extends CommandValidator {
 
     public boolean passValidate(String command) {
         String[] commandSplit = splitString(command);
-        if ((!passIsValid(commandSplit)) || (!IsDigits(commandSplit[1]))) {
+        if ((!passIsValid(commandSplit)) || (IsDigits(commandSplit[1]))) {
             return false;
         }
         month = Integer.parseInt(commandSplit[1]);

@@ -13,9 +13,8 @@ public class Checking extends Account {
     }
 
     @Override
-    public double deposit(double amount) {
+    public void deposit(double amount) {
         balance += amount;
-        return balance;
     }
 
     @Override
@@ -29,12 +28,11 @@ public class Checking extends Account {
     }
 
     @Override
-    public double withdraw(int amount) {
-        if ((balance - amount) > 0) {
+    public void withdraw(int amount) {
+        if ((balance - amount) >= 0) {
             balance -= amount;
         } else {
             balance = 0;
         }
-        return balance;
     }
 }

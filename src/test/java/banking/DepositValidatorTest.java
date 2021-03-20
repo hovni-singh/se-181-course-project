@@ -80,6 +80,12 @@ public class DepositValidatorTest {
     }
 
     @Test
+    public void savings_amount_at_maximum() {
+        boolean actual = commandValidator.validate("deposit 23746537 2500");
+        assertTrue(actual);
+    }
+
+    @Test
     public void valid_checking_deposit() {
         boolean actual = commandValidator.validate("deposit 13748594 500");
         assertTrue(actual);
@@ -89,6 +95,12 @@ public class DepositValidatorTest {
     public void checking_amount_greater_than_maximum_is_invalid() {
         boolean actual = commandValidator.validate("deposit 13748594 2000");
         assertFalse(actual);
+    }
+
+    @Test
+    public void checking_amount_at_maximum() {
+        boolean actual = commandValidator.validate("deposit 13748594 1000");
+        assertTrue(actual);
     }
 
     @Test

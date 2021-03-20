@@ -11,7 +11,7 @@ public class WithdrawValidator extends CommandValidator {
 
     public boolean withdrawValidate(String command) {
         String[] commandSplit = splitString(command);
-        if ((!(withdrawIsValid(commandSplit))) || (!IsDigits(commandSplit[1])) || (!IsDigits(commandSplit[2]))) {
+        if ((!(withdrawIsValid(commandSplit))) || (IsDigits(commandSplit[1])) || (IsDigits(commandSplit[2]))) {
             return false;
         }
         getVariables(commandSplit);

@@ -15,11 +15,11 @@ public class CommandValidator {
     public static boolean IsDigits(String s) {
         boolean numeric = true;
         try {
-            Double num = Double.parseDouble(s);
+            Double.parseDouble(s);
         } catch (NumberFormatException nfe) {
             numeric = false;
         }
-        return numeric;
+        return !numeric;
     }
 
     public boolean validate(String command) {
@@ -48,11 +48,7 @@ public class CommandValidator {
     }
 
     public boolean accountTypeIsValid(String type) {
-        if (type.isEmpty()) {
-            return false;
-        } else {
-            return type.equalsIgnoreCase("checking") || type.equalsIgnoreCase("savings") || type.equalsIgnoreCase("cd");
-        }
+        return type.equalsIgnoreCase("checking") || type.equalsIgnoreCase("savings") || type.equalsIgnoreCase("cd");
     }
 
     public boolean idIsValid(int id) {

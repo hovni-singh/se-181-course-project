@@ -70,9 +70,9 @@ abstract class Account {
 
     abstract public double getBalance();
 
-    abstract public double deposit(double amount);
+    abstract public void deposit(double amount);
 
-    abstract public double withdraw(int amount);
+    abstract public void withdraw(int amount);
 
 }
 

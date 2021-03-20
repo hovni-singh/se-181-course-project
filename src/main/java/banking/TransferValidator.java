@@ -12,7 +12,7 @@ public class TransferValidator extends CommandValidator {
         depositValidator = new DepositValidator(bank);
         withdrawValidator = new WithdrawValidator(bank);
         String[] commandSplit = splitString(command);
-        if ((!(transferIsValid(commandSplit))) || (commandSplit[1].equals(commandSplit[2])) || (!IsDigits(commandSplit[1])) || (!IsDigits(commandSplit[2]))) {
+        if ((!(transferIsValid(commandSplit))) || (commandSplit[1].equals(commandSplit[2])) || (IsDigits(commandSplit[1])) || (IsDigits(commandSplit[2]))) {
             return false;
         }
         if (checkForInvalidType(commandSplit)) {

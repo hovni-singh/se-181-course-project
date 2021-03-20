@@ -24,16 +24,14 @@ public class CD extends Account {
     }
 
     @Override
-    public double deposit(double amount) {
+    public void deposit(double amount) {
         balance += amount;
-        return balance;
     }
 
     @Override
-    public double withdraw(int amount) {
+    public void withdraw(int amount) {
         if (super.getTime() >= 12) {
             balance = 0;
         }
-        return balance;
     }
 }

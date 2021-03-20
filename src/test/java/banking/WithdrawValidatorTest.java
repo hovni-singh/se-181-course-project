@@ -70,13 +70,14 @@ public class WithdrawValidatorTest {
 
     @Test
     public void savings_amount_is_valid() {
-        boolean actual = commandValidator.validate("withdraw 13748594 300");
+        bank.getAccounts().get(23746537).increaseMonth(1);
+        boolean actual = commandValidator.validate("withdraw 23746537 1000");
         assertTrue(actual);
     }
 
     @Test
     public void amount_for_savings_is_above_maximum() {
-        boolean actual = commandValidator.validate("withdraw 13748594 2000");
+        boolean actual = commandValidator.validate("withdraw 23746537 2000");
         assertFalse(actual);
     }
 
@@ -91,6 +92,7 @@ public class WithdrawValidatorTest {
         boolean actual = commandValidator.validate("withdraw 13748594 600");
         assertFalse(actual);
     }
+
 
     @Test
     public void withdraw_from_cd_before_12_months_invalid() {

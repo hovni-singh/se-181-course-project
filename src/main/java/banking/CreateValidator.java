@@ -29,7 +29,7 @@ public class CreateValidator extends CommandValidator {
     }
 
     private boolean notValid(String[] commandSplit) {
-        return ((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (!IsDigits(commandSplit[2])) || (!IsDigits(commandSplit[3]));
+        return ((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (IsDigits(commandSplit[2])) || (IsDigits(commandSplit[3]));
     }
 
     private boolean cdAmountIsValid(String command) {

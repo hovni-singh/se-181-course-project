@@ -34,6 +34,7 @@ public class CreateValidatorTest {
         assertTrue(actual);
     }
 
+
     @Test
     public void create_has_id() {
         boolean actual = commandValidator.validate("create checking 26374837 0.01");

@@ -10,7 +10,7 @@ public class DepositValidator extends CommandValidator {
 
     public boolean depositValidate(String command) {
         String[] commandSplit = splitString(command);
-        if (((commandSplit.length != 3)) || (!(depositIsValid(commandSplit))) || (!IsDigits(commandSplit[1])) || (!IsDigits(commandSplit[2]))) {
+        if (((commandSplit.length != 3)) || (!(depositIsValid(commandSplit))) || (IsDigits(commandSplit[1])) || (IsDigits(commandSplit[2]))) {
             return false;
         }
         getVariables(commandSplit);
