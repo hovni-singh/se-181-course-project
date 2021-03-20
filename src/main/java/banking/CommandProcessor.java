@@ -37,7 +37,6 @@ public class CommandProcessor {
     }
 
     private String[] splitString(String command) {
-        String commandSplit[] = command.split(" ");
-        return commandSplit;
+        return command.split(" ");
     }
 }

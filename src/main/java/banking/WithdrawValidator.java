@@ -11,7 +11,7 @@ public class WithdrawValidator extends CommandValidator {
 
     public boolean withdrawValidate(String command) {
         String[] commandSplit = splitString(command);
-        if ((!(withdrawIsValid(commandSplit))) || (IsDigits(commandSplit[1]) == false) || (IsDigits(commandSplit[2]) == false)) {
+        if ((!(withdrawIsValid(commandSplit))) || (!IsDigits(commandSplit[1])) || (!IsDigits(commandSplit[2]))) {
             return false;
         }
         getVariables(commandSplit);
@@ -21,35 +21,22 @@ public class WithdrawValidator extends CommandValidator {
         if (amount <= 0 || !bank.accountExists(id) || (cdCheck()) || bank.withdrawAmountTooGreat(id, amount)) {
             return false;
         }
-        if (idIsValid(id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return idIsValid(id);
     }
 
     private boolean checkMonth() {
-        if (bank.getAccounts().get(id).getMonthPassed()) {
-            return true;
-        }
-        return false;
+        return bank.getAccounts().get(id).getMonthPassed();
     }
 
     private boolean cdCheck() {
         if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
-            if ((bank.getAccounts().get(id).getTime() < 12) || (amount < bank.getAccounts().get(id).getBalance())) {
-                return true;
-            }
+            return (bank.getAccounts().get(id).getTime() < 12) || (amount < bank.getAccounts().get(id).getBalance());
         }
         return false;
     }
 
     private boolean withdrawIsValid(String[] commandSplit) {
-        if ((commandSplit[0].equalsIgnoreCase(("withdraw"))) && ((commandSplit.length == 3))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (commandSplit[0].equalsIgnoreCase(("withdraw"))) && ((commandSplit.length == 3));
     }
 
     private void getVariables(String[] commandSplit) {

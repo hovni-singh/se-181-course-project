@@ -1,12 +1,10 @@
 package banking;
 
 public class Savings extends Account {
-    private String type;
     private double balance = 0;
 
     public Savings(String type, int id, double apr) {
         super(type, id, apr);
-        this.type = "Savings";
     }
 
     @Override
@@ -22,21 +20,13 @@ public class Savings extends Account {
 
     @Override
     public boolean depositAmountIsTooGreat(double amount) {
-        if (amount > 2500) {
-            return true;
-        } else {
-            return false;
-        }
+        return amount > 2500;
     }
 
 
     @Override
     public boolean withdrawAmountIsTooGreat(int amount) {
-        if (amount > 1000) {
-            return true;
-        } else {
-            return false;
-        }
+        return amount > 1000;
     }
 
     @Override

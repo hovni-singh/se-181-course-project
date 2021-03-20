@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class Bank {
 
-    private Map<Integer, Account> accounts;
+    private final Map<Integer, Account> accounts;
 
     public Bank() {
         accounts = new LinkedHashMap<>();
@@ -17,27 +17,15 @@ public class Bank {
     }
 
     public boolean accountExists(int id) {
-        if (accounts.get(id) != null) {
-            return true;
-        } else {
-            return false;
-        }
+        return accounts.get(id) != null;
     }
 
     public boolean depositAmountTooGreat(int id, double amount) {
-        if (accounts.get(id).depositAmountIsTooGreat(amount)) {
-            return true;
-        } else {
-            return false;
-        }
+        return accounts.get(id).depositAmountIsTooGreat(amount);
     }
 
     public boolean withdrawAmountTooGreat(int id, int amount) {
-        if (accounts.get(id).withdrawAmountIsTooGreat(amount)) {
-            return true;
-        } else {
-            return false;
-        }
+        return accounts.get(id).withdrawAmountIsTooGreat(amount);
     }
 
     public void close(int id) {

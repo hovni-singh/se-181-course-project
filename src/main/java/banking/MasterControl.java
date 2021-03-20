@@ -30,13 +30,9 @@ public class MasterControl {
         Set<Integer> keys = bank.getAccounts().keySet();
         for (Integer k : keys) {
             outputList.add(bank.getAccounts().get(k).stateOfAccount());
-            for (int i = 0; i < bank.getAccounts().get(k).getTransactionHistory().size(); i++) {
-                outputList.add(bank.getAccounts().get(k).getTransactionHistory().get(i));
-            }
+            outputList.addAll(bank.getAccounts().get(k).getTransactionHistory());
         }
-        for (int i = 0; i < commandStorage.getInvalidCommands().size(); i++) {
-            outputList.add(commandStorage.getInvalidCommands().get(i));
-        }
+        outputList.addAll(commandStorage.getInvalidCommands());
         return outputList;
     }
 }

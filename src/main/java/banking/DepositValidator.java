@@ -10,26 +10,18 @@ public class DepositValidator extends CommandValidator {
 
     public boolean depositValidate(String command) {
         String[] commandSplit = splitString(command);
-        if (((commandSplit.length != 3)) || (!(depositIsValid(commandSplit))) || (IsDigits(commandSplit[1]) == false) || (IsDigits(commandSplit[2]) == false)) {
+        if (((commandSplit.length != 3)) || (!(depositIsValid(commandSplit))) || (!IsDigits(commandSplit[1])) || (!IsDigits(commandSplit[2]))) {
             return false;
         }
         getVariables(commandSplit);
         if ((bank.depositAmountTooGreat(id, amount)) || !bank.accountExists(id) || amount <= 0 || bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
             return false;
         }
-        if (idIsValid(id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return idIsValid(id);
     }
 
     private boolean depositIsValid(String[] commandSplit) {
-        if ((commandSplit[0].equalsIgnoreCase(("deposit"))) && ((commandSplit.length == 3))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (commandSplit[0].equalsIgnoreCase(("deposit"))) && ((commandSplit.length == 3));
     }
 
 

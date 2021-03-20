@@ -61,8 +61,7 @@ abstract class Account {
     public String stateOfAccount() {
         String newApr = String.format("%.2f", getAPR());
         String balance = String.format("%.2f", getBalance());
-        String request = firstLetterCaps(getType()) + " " + getId() + " " + balance + " " + newApr;
-        return request;
+        return firstLetterCaps(getType()) + " " + getId() + " " + balance + " " + newApr;
     }
 
     abstract boolean depositAmountIsTooGreat(double amount);

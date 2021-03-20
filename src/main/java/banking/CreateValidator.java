@@ -12,7 +12,7 @@ public class CreateValidator extends CommandValidator {
 
     public boolean createValidate(String command) {
         String[] commandSplit = splitString(command);
-        if (((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (IsDigits(commandSplit[2]) == false) || (IsDigits(commandSplit[3]) == false)) {
+        if (((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (!IsDigits(commandSplit[2])) || (!IsDigits(commandSplit[3]))) {
             return false;
         }
         getVariables(commandSplit);
@@ -21,17 +21,9 @@ public class CreateValidator extends CommandValidator {
             return false;
         }
         if (commandSplit.length == 4) {
-            if ((accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (!type.equalsIgnoreCase("cd"))) {
-                check = true;
-            } else {
-                check = false;
-            }
+            check = (accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (!type.equalsIgnoreCase("cd"));
         } else {
-            if ((accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (cdAmountIsValid(command))) {
-                check = true;
-            } else {
-                check = false;
-            }
+            check = (accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (cdAmountIsValid(command));
         }
         return check;
     }
@@ -42,33 +34,20 @@ public class CreateValidator extends CommandValidator {
             return false;
         }
         amount = Integer.parseInt(commandSplit[4]);
-        if (amount >= 1000 && amount <= 10000) {
-            return true;
-        } else {
-            return false;
-        }
+        return amount >= 1000 && amount <= 10000;
     }
 
     private boolean createIsValid(String[] commandSplit) {
-        if (commandSplit[0].equalsIgnoreCase("create")) {
-            return true;
-        } else {
-            return false;
-        }
+        return commandSplit[0].equalsIgnoreCase("create");
     }
 
     private boolean aprIsValid(double apr) {
         String[] split = Double.toString(apr).split("\\.");
-        split[0].length();
         int decimalLength = split[1].length();
         if ((apr % 1 == 0) || (apr >= 10) || (apr <= 0)) {
             return false;
         }
-        if (decimalLength > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return decimalLength > 0;
     }
 
     private void getVariables(String[] commandSplit) {

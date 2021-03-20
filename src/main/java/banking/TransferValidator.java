@@ -20,29 +20,17 @@ public class TransferValidator extends CommandValidator {
         }
         String depositString = "deposit " + commandSplit[2] + " " + commandSplit[3];
         String withdrawString = "withdraw " + commandSplit[1] + " " + commandSplit[3];
-        if (depositValidator.depositValidate(depositString) && withdrawValidator.withdrawValidate(withdrawString)) {
-            return true;
-        } else {
-            return false;
-        }
+        return depositValidator.depositValidate(depositString) && withdrawValidator.withdrawValidate(withdrawString);
     }
 
     private boolean checkForInvalidType(String[] commandSplit) {
         int toId = Integer.parseInt(commandSplit[1]);
         int fromId = Integer.parseInt(commandSplit[2]);
-        if ((bank.getAccounts().get(fromId).getType().equalsIgnoreCase("cd")) || !bank.accountExists(fromId) || !bank.accountExists(toId) || (bank.getAccounts().get(toId).getType().equalsIgnoreCase("cd"))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (bank.getAccounts().get(fromId).getType().equalsIgnoreCase("cd")) || !bank.accountExists(fromId) || !bank.accountExists(toId) || (bank.getAccounts().get(toId).getType().equalsIgnoreCase("cd"));
     }
 
     private boolean transferIsValid(String[] commandSplit) {
-        if ((commandSplit[0].equalsIgnoreCase("transfer")) && (commandSplit.length == 4)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (commandSplit[0].equalsIgnoreCase("transfer")) && (commandSplit.length == 4);
     }
 
 }

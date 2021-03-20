@@ -13,19 +13,11 @@ public class PassTimeValidator extends CommandValidator {
             return false;
         }
         month = Integer.parseInt(commandSplit[1]);
-        if ((month < 1) || (month > 60)) {
-            return false;
-        } else {
-            return true;
-        }
+        return (month >= 1) && (month <= 60);
     }
 
     private boolean passIsValid(String[] commandSplit) {
-        if ((commandSplit[0].equalsIgnoreCase("pass")) && (commandSplit.length == 2)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (commandSplit[0].equalsIgnoreCase("pass")) && (commandSplit.length == 2);
     }
 
 

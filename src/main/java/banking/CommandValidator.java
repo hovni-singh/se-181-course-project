@@ -50,10 +50,8 @@ public class CommandValidator {
     public boolean accountTypeIsValid(String type) {
         if (type.isEmpty()) {
             return false;
-        } else if (type.equalsIgnoreCase("checking") || type.equalsIgnoreCase("savings") || type.equalsIgnoreCase("cd")) {
-            return true;
         } else {
-            return false;
+            return type.equalsIgnoreCase("checking") || type.equalsIgnoreCase("savings") || type.equalsIgnoreCase("cd");
         }
     }
 
@@ -63,24 +61,15 @@ public class CommandValidator {
             id /= 10;
             ++count;
         }
-        if (count == 8) {
-            return true;
-        } else {
-            return false;
-        }
+        return count == 8;
     }
 
     public boolean checkForDuplicateId(int id, Bank bank) {
-        if (bank.accountExists(id)) {
-            return true;
-        } else {
-            return false;
-        }
+        return bank.accountExists(id);
     }
 
     public String[] splitString(String command) {
-        String commandSplit[] = command.split(" ");
-        return commandSplit;
+        return command.split(" ");
     }
 
 }

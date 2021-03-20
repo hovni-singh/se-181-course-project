@@ -41,8 +41,8 @@ public class PassTimeCommandProcessor extends CommandProcessor {
                 });
                 iteration++;
             }
-            for (int i = 0; i < closeAccounts.size(); i++) {
-                bank.close(closeAccounts.get(i));
+            for (Integer closeAccount : closeAccounts) {
+                bank.close(closeAccount);
             }
         }
     }
