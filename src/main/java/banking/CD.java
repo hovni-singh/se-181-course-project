@@ -10,7 +10,7 @@ public class CD extends Account {
 
     @Override
     boolean depositAmountIsTooGreat(double amount) {
-        return false;
+        return true;
     }
 
     @Override
