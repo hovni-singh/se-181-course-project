@@ -12,7 +12,7 @@ public class CreateValidator extends CommandValidator {
 
     public boolean createValidate(String command) {
         String[] commandSplit = splitString(command);
-        if (((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (!IsDigits(commandSplit[2])) || (!IsDigits(commandSplit[3]))) {
+        if (notValid(commandSplit)) {
             return false;
         }
         getVariables(commandSplit);
@@ -26,6 +26,10 @@ public class CreateValidator extends CommandValidator {
             check = (accountTypeIsValid(type)) && (idIsValid(id)) && (aprIsValid(apr)) && (cdAmountIsValid(command));
         }
         return check;
+    }
+
+    private boolean notValid(String[] commandSplit) {
+        return ((commandSplit.length < 4) || (commandSplit.length > 5)) || (!(createIsValid(commandSplit))) || (!IsDigits(commandSplit[2])) || (!IsDigits(commandSplit[3]));
     }
 
     private boolean cdAmountIsValid(String command) {

@@ -19,20 +19,40 @@ public class CommandProcessor {
         transferCommandProcessor = new TransferCommandProcessor(bank);
         passTimeCommandProcessor = new PassTimeCommandProcessor(bank);
         String[] commandSplit = splitString(command);
-        if (commandSplit[0].equalsIgnoreCase("create")) {
-            createCommandProcessor.createProcess(commandSplit);
+        create(commandSplit);
+        deposit(commandSplit);
+        withdraw(commandSplit);
+        transfer(commandSplit);
+        pass(commandSplit);
+    }
+
+    private void pass(String[] commandSplit) {
+        if (commandSplit[0].equalsIgnoreCase("pass")) {
+            passTimeCommandProcessor.passProcess(commandSplit);
         }
-        if (commandSplit[0].equalsIgnoreCase("deposit")) {
-            depositCommandProcessor.depositProcess(commandSplit);
-        }
-        if (commandSplit[0].equalsIgnoreCase("withdraw")) {
-            withdrawCommandProcessor.withdrawProcess(commandSplit);
-        }
+    }
+
+    private void transfer(String[] commandSplit) {
         if (commandSplit[0].equalsIgnoreCase("transfer")) {
             transferCommandProcessor.transferProcess(commandSplit);
         }
-        if (commandSplit[0].equalsIgnoreCase("pass")) {
-            passTimeCommandProcessor.passProcess(commandSplit);
+    }
+
+    private void withdraw(String[] commandSplit) {
+        if (commandSplit[0].equalsIgnoreCase("withdraw")) {
+            withdrawCommandProcessor.withdrawProcess(commandSplit);
+        }
+    }
+
+    private void deposit(String[] commandSplit) {
+        if (commandSplit[0].equalsIgnoreCase("deposit")) {
+            depositCommandProcessor.depositProcess(commandSplit);
+        }
+    }
+
+    private void create(String[] commandSplit) {
+        if (commandSplit[0].equalsIgnoreCase("create")) {
+            createCommandProcessor.createProcess(commandSplit);
         }
     }
 
