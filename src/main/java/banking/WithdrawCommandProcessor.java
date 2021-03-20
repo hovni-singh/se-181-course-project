@@ -11,6 +11,8 @@ public class WithdrawCommandProcessor extends CommandProcessor {
     public void withdrawProcess(String[] commandSplit) {
         getWithdrawVariables(commandSplit);
         bank.getAccounts().get(id).withdraw(amount);
+        String request = "Withdraw " + commandSplit[1] + " " + commandSplit[2];
+        bank.getAccounts().get(id).addTransactionHistory(request);
     }
 
     private void getWithdrawVariables(String[] commandSplit) {

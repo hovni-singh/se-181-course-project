@@ -30,7 +30,7 @@ public class TransferValidator extends CommandValidator {
     private boolean checkForInvalidType(String[] commandSplit) {
         int toId = Integer.parseInt(commandSplit[1]);
         int fromId = Integer.parseInt(commandSplit[2]);
-        if ((bank.getAccounts().get(fromId).getType().equalsIgnoreCase("cd")) || (bank.getAccounts().get(toId).getType().equalsIgnoreCase("cd"))) {
+        if ((bank.getAccounts().get(fromId).getType().equalsIgnoreCase("cd")) || !bank.accountExists(fromId) || !bank.accountExists(toId) || (bank.getAccounts().get(toId).getType().equalsIgnoreCase("cd"))) {
             return true;
         } else {
             return false;

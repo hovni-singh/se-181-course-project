@@ -23,7 +23,15 @@ public class MasterControl {
                 commandStorage.addInvalidCommand(command);
             }
         }
+        bank.getAccounts().forEach((key, account) -> {
+            System.out.println(account.stateOfAccount());
+            for (int i = 0; i < account.getTransactionHistory().size(); i++) {
+                System.out.println(account.getTransactionHistory().get(i));
+            }
+        });
+        for (int i = 0; i < commandStorage.getInvalidCommands().size(); i++) {
+            System.out.println(commandStorage.getInvalidCommands().get(i));
+        }
         return commandStorage.getInvalidCommands();
     }
-
 }

@@ -18,7 +18,7 @@ public class WithdrawValidator extends CommandValidator {
         if (bank.getAccounts().get(id).getType().equalsIgnoreCase("cd") && ((bank.getAccounts().get(id).getTime() < 12) || (amount < bank.getAccounts().get(id).getBalance()))) {
             return false;
         }
-        if (bank.withdrawAmountTooGreat(id, amount) || amount <= 0) {
+        if (bank.withdrawAmountTooGreat(id, amount) || amount <= 0 || !bank.accountExists(id)) {
             return false;
         }
         if (idIsValid(id)) {

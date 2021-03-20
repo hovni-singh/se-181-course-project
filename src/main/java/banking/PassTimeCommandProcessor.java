@@ -31,6 +31,7 @@ public class PassTimeCommandProcessor extends CommandProcessor {
                 if (account.getType().equalsIgnoreCase("cd")) {
                     for (int i = 0; i < 4; i++) {
                         sum += balance * rate;
+                        balance += sum;
                     }
                 } else {
                     sum = balance * rate;

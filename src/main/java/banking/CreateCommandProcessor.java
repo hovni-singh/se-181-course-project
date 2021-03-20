@@ -24,10 +24,8 @@ public class CreateCommandProcessor extends CommandProcessor {
     }
 
     private void isCD(String[] commandSplit) {
-        if (type.equalsIgnoreCase("cd")) {
-            amount = Integer.parseInt(commandSplit[4]);
-            bank.addCDAccount(type, id, apr, amount);
-        }
+        amount = Integer.parseInt(commandSplit[4]);
+        bank.addCDAccount(type, id, apr, amount);
     }
 
     private void isSavings() {

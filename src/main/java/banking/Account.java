@@ -1,9 +1,13 @@
 package banking;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class Account {
     private final String type;
     private final int id;
     private final double apr;
+    public List<String> transactionHistory;
     private int time;
 
     public Account(String type, int id, double apr) {
@@ -11,6 +15,13 @@ abstract class Account {
         this.id = id;
         this.apr = apr;
         time = 0;
+        transactionHistory = new ArrayList<>();
+    }
+
+    static public String firstLetterCaps(String data) {
+        String firstLetter = data.substring(0, 1).toUpperCase();
+        String restLetters = data.substring(1).toLowerCase();
+        return firstLetter + restLetters;
     }
 
     public String getType() {
@@ -31,6 +42,21 @@ abstract class Account {
 
     public int getTime() {
         return time;
+    }
+
+    public List<String> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void addTransactionHistory(String output) {
+        transactionHistory.add(output);
+    }
+
+    public String stateOfAccount() {
+        String newApr = String.format("%.2f", getAPR());
+        String balance = String.format("%.2f", getBalance());
+        String request = firstLetterCaps(getType()) + " " + getId() + " " + balance + " " + newApr;
+        return request;
     }
 
     abstract boolean depositAmountIsTooGreat(double amount);

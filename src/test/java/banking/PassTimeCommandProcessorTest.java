@@ -108,15 +108,14 @@ public class PassTimeCommandProcessorTest {
     public void cd_account_balance_after_one_month() {
         commandProcessor.processCommand("pass 1");
         double balance = roundDouble(bank.getAccounts().get(27382367).getBalance(), 3);
-        assertEquals(601, balance);
-
+        assertEquals(601.001, balance);
     }
 
     @Test
     public void cd_account_balance_after_two_months() {
         commandProcessor.processCommand("pass 2");
         double balance = roundDouble(bank.getAccounts().get(27382367).getBalance(), 3);
-        assertEquals(602.002, balance);
+        assertEquals(602.004, balance);
     }
 
     @Test
@@ -126,7 +125,7 @@ public class PassTimeCommandProcessorTest {
         double balance = roundDouble(bank.getAccounts().get(27382367).getBalance(), 3);
         double balance2 = roundDouble(bank.getAccounts().get(13748594).getBalance(), 3);
         assertEquals(500.167, balance2);
-        assertEquals(602.002, balance);
+        assertEquals(602.004, balance);
     }
 
 }

@@ -99,8 +99,8 @@ public class CreateValidatorTest {
     }
 
     @Test
-    public void apr_100_is_invalid() {
-        boolean actual = commandValidator.validate("create checking 12789345 1.00");
+    public void apr_10_is_invalid() {
+        boolean actual = commandValidator.validate("create checking 12789345 10.0");
         assertFalse(actual);
     }
 

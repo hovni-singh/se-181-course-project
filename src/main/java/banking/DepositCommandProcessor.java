@@ -11,6 +11,8 @@ public class DepositCommandProcessor extends CommandProcessor {
     public void depositProcess(String[] commandSplit) {
         getDepositVariables(commandSplit);
         bank.getAccounts().get(id).deposit(amount);
+        String request = "Deposit " + commandSplit[1] + " " + commandSplit[2];
+        bank.getAccounts().get(id).addTransactionHistory(request);
     }
 
     private void getDepositVariables(String[] commandSplit) {

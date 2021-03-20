@@ -61,10 +61,10 @@ public class CreateValidator extends CommandValidator {
         String[] split = Double.toString(apr).split("\\.");
         split[0].length();
         int decimalLength = split[1].length();
-        if ((apr % 1 == 0) || (apr >= 1.00) || (apr <= 0)) {
+        if ((apr % 1 == 0) || (apr >= 10) || (apr <= 0)) {
             return false;
         }
-        if (decimalLength == 2) {
+        if (decimalLength > 0) {
             return true;
         } else {
             return false;

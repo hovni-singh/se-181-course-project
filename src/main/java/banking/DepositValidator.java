@@ -14,7 +14,7 @@ public class DepositValidator extends CommandValidator {
             return false;
         }
         getVariables(commandSplit);
-        if ((bank.depositAmountTooGreat(id, amount)) || amount <= 0 || bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
+        if ((bank.depositAmountTooGreat(id, amount)) || !bank.accountExists(id) || amount <= 0 || bank.getAccounts().get(id).getType().equalsIgnoreCase("cd")) {
             return false;
         }
         if (idIsValid(id)) {
